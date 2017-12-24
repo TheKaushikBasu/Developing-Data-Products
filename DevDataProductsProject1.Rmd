@@ -1,0 +1,36 @@
+---
+title: "Developing Data Products Week 2 Assignment: R Markdown and Leaflet"
+author: "Kaushik Basu"
+date: "24 December 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+The source code is available at [GitHub](https://github.com/TheKaushikBasu/Developing-Data-Products). [Just click here!](https://github.com/TheKaushikBasu/Developing-Data-Products)
+
+## Creating Leaflet Map for the Week 2 assignment 
+Create a leaflet map object.
+```{r cars}
+library(leaflet)
+map <- leaflet() %>% addTiles()
+
+```
+
+Create a marker with a picture of Victoria Memorial and a link to its homepage.
+```{r}
+victoriaMemorialIcon <- makeIcon(
+   iconUrl = "http://www.victoriamemorial-cal.org/home/content/en",
+   iconWidth = 30*408/255, iconHeight = 30,
+   iconAnchorX = 30*408/255/2, iconAnchorY = 30/2
+)
+```
+
+Add the marker to the map and display the map.
+```{r}
+victoriaMemorialPopup <- c("<a href= 'http://www.victoriamemorial-cal.org' >Victoria Memorial<br><img src='VictoriaMemorial.png' width='210' height='132'  alt='Victoria Memorial' title='Victoria Memorial'></a>")
+map %>%
+   addTiles() %>%
+   addMarkers(lat=22.5448, lng=88.3426, popup = victoriaMemorialPopup)
+```
